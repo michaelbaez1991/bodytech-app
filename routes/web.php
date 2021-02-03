@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\DepartamentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('clientes', [PersonaController::class, 'index'])->name('customers');
+Route::post('registro', [PersonaController::class, 'store'])->name('creatRregister');
+Route::get('personas/ciudad', [DepartamentoController::class, 'getCities']);
+
+Route::resource('personas','App\Http\Controllers\PersonaController');
+// Route::get('personas',[PersonaController::class, 'index']);
+// Route::get('personas/create',[PersonaController::class, 'create']);
+// Route::post('personas',[PersonaController::class, 'store']);
+// Route::delete('personas/destroy',[PersonaController::class, 'destroy']);
