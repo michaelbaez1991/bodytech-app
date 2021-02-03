@@ -11,6 +11,7 @@
 * SQlite
 * Bootstrap
 * Jquery
+* Laravel
 
 ## PASOS PARA LEVANTAR EL AMBIENTE
 * Clonar el repositorio
