@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('clientes', [PersonaController::class, 'index'])->name('customers');
 Route::post('registro', [PersonaController::class, 'store'])->name('creatRregister');
-Route::get('personas/ciudad', [DepartamentoController::class, 'getCities']);
+Route::get('ciudad', [DepartamentoController::class, 'getCities']);
 
 Route::resource('personas','App\Http\Controllers\PersonaController');
 // Route::get('personas',[PersonaController::class, 'index']);

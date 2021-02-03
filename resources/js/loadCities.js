@@ -2,10 +2,9 @@ const { ajax, each } = require("jquery");
 
 $(function() {
     $('#departamento_id').on("change", function () {
-        var departamento = $(this).val();      
-        // alert(departamento);
+        var departamento = $(this).val();   
         var data = { "departamento" : departamento };
-        var url = "ciudad";
+        var url = "http://127.0.0.1:8000/ciudad";
         if($.trim(departamento) != ""){
             $.ajax({
                 type: "get",

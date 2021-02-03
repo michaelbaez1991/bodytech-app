@@ -55,13 +55,7 @@ class PersonaController extends Controller
         ]);
 
         $persona = Persona::create($request->all());
-        
-        // if (Persona::all()->count() >= 5 ) {
-        //     $ganador = Persona::inRandomOrder()->first();
-        //     return redirect()->route('readRegister')->with('winner',  compact('ganador'));
-        // }else{
-            return redirect()->route('personas.index')->with('success',  'Registro completado exitosamente');
-        // }
+        return redirect()->route('personas.index')->with('success',  'Registro completado exitosamente');
     }
 
     /**
@@ -85,9 +79,9 @@ class PersonaController extends Controller
     {
         $persona = Persona::find($id);
         $departamentos = Departamento::all();
+        $municipios = Municipio::all();
 
-        // return view('personas.edit')->with('persona', $persona);
-        return view('personas.edit', compact('departamentos', 'persona'));
+        return view('personas.edit', compact('departamentos', 'persona', 'municipios'));
     }
 
     /**
@@ -99,7 +93,24 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, 
+        [ 
+            'identificacion' => 'required|string|min:7|max:30',
+            'tipo_identificacion' => 'required|string|min:2|max:4',
+            'primer_nombre' => 'required|string|max:30',
+            'segundo_nombre' => 'required|string|max:30',
+            'primer_apellido' => 'required|string|max:30',
+            'segundo_apellido' => 'required|string|max:30',   
+            'direccion' => 'required|string|max:100', 
+            'telefono' => 'required|numeric|digits_between:1,12',
+            'correo' => 'required|email',
+            'ocupacion' => 'required|string|max:100', 
+            'departamento_id' => 'required|integer',
+            'municipio_id' => 'required|integer'
+        ]);
+        $persona = Persona::find($id);
+        $persona->fill(request()->input())->save();
+        return redirect('/clientes');
     }
 
     /**

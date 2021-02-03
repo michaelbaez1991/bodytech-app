@@ -27,20 +27,19 @@
                     <h2>Editar cliente</h2>
                     </div>
                 <div class="card-body">
-                    <form action="/personas" method="POST" >
-                        {{ csrf_field() }}
-
+                    <form action="/personas/{{$persona->id}}" method="POST">
+                        @csrf    
+                        @method('PUT')
                         {{-- IDENTIFICACION --}}
                         <div class="form-group">
                             <label for="identificacion">Identificación</label>
-                            <input type="text" class="form-control" id="identificacion" name="identificacion">
+                            <input type="text" class="form-control" id="identificacion" name="identificacion" value="{{$persona->identificacion}}">
                         </div>
 
                         {{-- TIPO IDENTIFICACION --}}
                         <div class="form-group">
                             <label for="tipo_identificacion">Tipo identificación</label>
-                            <select class="form-control" id="tipo_identificacion" name="tipo_identificacion">
-                                <option disabled selected>...</option>
+                            <select class="form-control" id="tipo_identificacion" name="tipo_identificacion" value="{{$persona->tipo_identificacion}}">
                                 <option value="CC">CC</option>
                                 <option value="RC">RC</option>
                                 <option value="TI">TI</option>
@@ -53,56 +52,55 @@
                         {{-- PRIMER NOMBRE --}}
                         <div class="form-group">
                             <label for="primer_nombre">Primer nombre</label>
-                            <input type="text" class="form-control" id="primer_nombre" name="primer_nombre">
+                            <input type="text" class="form-control" id="primer_nombre" name="primer_nombre" value="{{$persona->primer_nombre}}">
                         </div>
 
                         {{-- SEGUNDO NOMBRE --}}
-                        <div class="form-group">
+                         <div class="form-group">
                             <label for="segundo_nombre">Segundo nombre</label>
-                            <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre">
+                            <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" value="{{$persona->segundo_nombre}}">
                         </div>
     
                         {{-- PRIMER APELLIDO --}}
                         <div class="form-group">
                             <label for="primer_apellido">Primer apellido</label>
-                            <input type="text" class="form-control" id="primer_apellido" name="primer_apellido">
+                            <input type="text" class="form-control" id="primer_apellido" name="primer_apellido" value="{{$persona->primer_apellido}}">
                         </div>
 
                         {{-- SEGUNDO APELLIDO --}}
                         <div class="form-group">
                             <label for="segundo_apellido">Segundo apellido</label>
-                            <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido">
+                            <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" value="{{$persona->segundo_apellido}}">
                         </div>
 
                         {{-- DIRECCION --}}
                         <div class="form-group">
                             <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion">
+                            <input type="text" class="form-control" id="direccion" name="direccion" value="{{$persona->direccion}}">
                         </div>
     
                         {{-- TELEFONO --}}
                         <div class="form-group">
                             <label for="telefono">Celular</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="{{$persona->telefono}}">
                         </div>
     
                         {{-- CORREO --}}
                         <div class="form-group">
                             <label for="correo">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" name="correo">
+                            <input type="email" class="form-control" id="correo" name="correo" value="{{$persona->correo}}">
                         </div>
 
                         {{-- OCUPACION --}}
                         <div class="form-group">
                             <label for="ocupacion">Ocupación</label>
-                            <input type="text" class="form-control" id="ocupacion" name="ocupacion">
+                            <input type="text" class="form-control" id="ocupacion" name="ocupacion" value="{{$persona->ocupacion}}">
                         </div>
 
                         {{-- DEPARTAMENTO --}}
                         <div class="form-group">
                             <label for="departamento_id">Departamento</label>
-                            <select class="form-control" id="departamento_id" name="departamento_id">
-                                <option disabled selected>...</option>
+                            <select class="form-control" id="departamento_id" name="departamento_id" value="{{$persona->departamento_id}}">
                                 @foreach ($departamentos as $departamento)
                                 <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
                                 @endforeach
@@ -112,13 +110,16 @@
                         {{-- MUNICIPIO --}}
                         <div class="form-group">
                             <label for="ciudad_id">Municipio</label>
-                            <select class="form-control" id="ciudad_id" name="municipio_id">
+                            <select class="form-control" id="ciudad_id" name="municipio_id" value="{{$persona->municipio_id}}">
+                                @foreach ($municipios as $municipio)
+                                <option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
+                                @endforeach
                             </select>
                         </div>
                 </div>
 
                 <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
                 </div>
             </div>
